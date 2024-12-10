@@ -1,15 +1,8 @@
-# be12-1st-5ven-bread_book
-5ven  
-  5팀 - 곽효림, 김재구, 임찬근, 최인욱, 최원익
-  ---
-
-  Tech Stack 
-  <br>  Platforms & Languages
-  <br> Tools
-
-  # 소개
-
-# ⏱프로젝트 개요
+<p align="middle" >
+  <img width="300px;" src="./assets/image/oven_with_books_icon_transparent_retry-removebg-preview.png"/>
+</p>
+<h1 align="middle">5ven</h1>
+# 프로젝트 소개📝
 ### 😃팀원소개
 
 <figure>
@@ -140,20 +133,9 @@
 3. 온·오프라인 중고서점 실태조사 (발행일 2017년 10월 31일, 발행처 한국출판문화산업진흥원)
 
 
-# 요구사항/테스트 명세서
-- 1. 요구사항 정의서
-<a href="[./assets/5조_요구사항 정의서.pdf](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.pdf)">요구사항 정의서<a/><br/><br/>
-<img src="https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/요구사항 정의서.png" width="100%" />
+# 요구사항 정의서
+- 1. 요구사항 정의서 
+    
+      [요구사항 정의서](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.pdf)
+      ![image](https://raw.githubusercontent.com/beyond-sw-camp/be12-1st-5ven-bread_book/refs/heads/kjg/assets/image/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.png)
 
-
-
-
-
-
-
-
-
-
-
-
-- 서적의 구매를 완료하고, 만족스러운 리뷰를 작성하고 판매자에게 5점 만점의 별점을 주어 판매자의 신용등급이 올라간다.

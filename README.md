@@ -107,3 +107,14 @@
     - 판매자와 직접 만나 결제하기로 합의 했다. 서로 만나기를 원하는 장소를 카카오맵 통해 지정하였다.
     - 판매자와 pay 시스템 결제로 합의 했다. 택배비는 상품가격에 포함이라고 하여, 주소쓰는 란에 주소를 입력한 후 카카오페이를 통해 상품결제를 진행하였다.
 - 서적의 구매를 완료하고, 만족스러운 리뷰를 작성하고 판매자에게 5점 만점의 별점을 주어 판매자의 신용등급이 올라간다.
+
+
+## 💬요구사항 명세
+➡[요구사항명세 바로가기](https://drive.google.com/file/d/1AVCAE3JDZqfrrJ5Uc0reVArKSkhOrvSa/view?usp=drive_link)
+## 📅WBS
+➡[WBS 바로가기](https://drive.google.com/file/d/1UH2au8lIWkwfuhb4fbL6NXk-Zp4MBpl1/view?usp=drive_link)
+
+
+## 🔗Replication
+### CLUSTER Architecher
+![replication](./img/아키텍처.png)

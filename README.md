@@ -12,10 +12,10 @@
         <td align="center"><img src="./img/밀.png" width="180px"/></td>
       </tr>
       <tr>
-        <td align="center">팀장: <a href="https://github.com/daydeiday">곽효림</a></td>
-        <td align="center">팀원: <a href="https://github.com/wkdlrn">김재구</a></td>
-        <td align="center">팀원: <a href="https://github.com/ChangeunLim" >암찬근</a></td>
         <td align="center">팀장: <a href="https://github.com/InukChoi">최인욱</a></td>
+	<td align="center">팀장: <a href="https://github.com/daydeiday">곽효림</a></td>
+        <td align="center">팀원: <a href="https://github.com/wkdlrn">김재구</a></td>
+        <td align="center">팀원: <a href="https://github.com/ChangeunLim" >임찬근</a></td>
 	<td align="center">팀원: <a href="https://github.com/choi-won-ik" >최원익</a></td>
       </tr>
     </table>

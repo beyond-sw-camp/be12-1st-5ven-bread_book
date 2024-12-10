@@ -107,3 +107,21 @@
 1. 월간 중앙 1455호 (2018.10.22) - [중고시장의 명암] 20~30대 중·저가 선호로 중고거래 늘어 - 김성희 기자 https://jmagazine.joins.com/economist/view/323256
 2. 2024.10.02 13:14중고거래 전성시대, 중고시장 40조 원대 성장 치열한 플랫폼 전쟁 - 김보현 기자 https://www.hantoday.net/news/articleView.html?idxno=44595
 3. 온·오프라인 중고서점 실태조사 (발행일 2017년 10월 31일, 발행처 한국출판문화산업진흥원)
+
+
+# 요구사항/테스트 명세서
+- 1. 요구사항 정의서
+<a href="[./assets/5조_요구사항 정의서.pdf](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.pdf)">요구사항 정의서<a/><br/><br/>
+<img src="https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/요구사항 정의서.png" width="100%" />
+
+
+
+
+
+
+
+
+
+
+
+

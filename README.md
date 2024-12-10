@@ -1,7 +1,7 @@
-<p align="middle" >
-  <img width="200px;" src="./assets/image/oven_with_books_icon_transparent_retry-removebg-preview.png"/>
+<p align="middle" style="margin: 0; padding: 0;">
+  <img width="200px" src="./assets/image/oven_with_books_icon_transparent_retry-removebg-preview.png" style="display: block; margin: 0 auto;"/>
 </p>
-<h1 align="middle" style="margin-top: -100px;">5ven</h1>
+<h1 align="middle" style="margin-top: -20px;">5ven</h1>
 
 # 📝프로젝트 소개
 ### **중고서적 거래 플랫폼**

@@ -4,7 +4,7 @@
 <figure>
     <table>
       <tr>
-        <td align="center"><img src="./img/샌드위치.jpg" width="180px"/></td>
+        <td align="center"><img src="./img/샌드위치.png" width="180px"/></td>
         <td align="center"><img src="./img/식빵.png" width="180px"/></td>
         <td align="center"><img src="./img/반죽.png" width="180px"/></td>
 	<td align="center"><img src="./img/밀가루.png" width="180px"/></td>

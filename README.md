@@ -1,7 +1,7 @@
-<p align="middle" style="margin: 0; padding: 0;">
+<p align="middle">
   <img width="200px" src="./assets/image/5ven icon.png">
 </p>
-<h1 align="middle">5ven</h1>
+<h1 align="middle" style="margin-top: -20px;">5ven</h1>
 
 # 📝프로젝트 소개
 ### **중고서적 거래 플랫폼**

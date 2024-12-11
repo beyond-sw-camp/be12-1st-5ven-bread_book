@@ -112,9 +112,9 @@
 
 
 ## 💬요구사항 명세
-➡[요구사항명세 바로가기](https://drive.google.com/file/d/1AVCAE3JDZqfrrJ5Uc0reVArKSkhOrvSa/view?usp=drive_link)
+➡[요구사항명세 바로가기](/pdf/요구사항 정의서.pdf)
 ## 📅WBS
-➡[WBS 바로가기](https://drive.google.com/file/d/1UH2au8lIWkwfuhb4fbL6NXk-Zp4MBpl1/view?usp=drive_link)
+➡[WBS 바로가기](/pdf/5ven ERD.png)
 
 
 ## 🔗Replication

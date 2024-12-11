@@ -1,5 +1,6 @@
 # be12-1st-5ven-bread_book
 # ⏱프로젝트 개요
+## 📽 팀명: 5ven
 ### 😃팀원소개
 
 <figure>
@@ -12,10 +13,10 @@
         <td align="center"><img src="./img/밀.png" width="180px"/></td>
       </tr>
       <tr>
-        <td align="center">팀장: <a href="https://github.com/daydeiday">곽효림</a></td>
-        <td align="center">팀원: <a href="https://github.com/wkdlrn">김재구</a></td>
-        <td align="center">팀원: <a href="https://github.com/ChangeunLim" >암찬근</a></td>
         <td align="center">팀장: <a href="https://github.com/InukChoi">최인욱</a></td>
+	<td align="center">팀장: <a href="https://github.com/daydeiday">곽효림</a></td>
+        <td align="center">팀원: <a href="https://github.com/wkdlrn">김재구</a></td>
+        <td align="center">팀원: <a href="https://github.com/ChangeunLim" >임찬근</a></td>
 	<td align="center">팀원: <a href="https://github.com/choi-won-ik" >최원익</a></td>
       </tr>
     </table>
@@ -23,6 +24,7 @@
 
 
 ## 📽프로젝트 소개
+### 웹 서비스명: 책빵 📖🍞
 ### **중고서적 거래 플랫폼**
 
 현대인들은 책을 통해 지식을 얻고 감동을 경험하지만 더 이상 필요하지 않은 책이 쌓여가는 문제를 자주 겪습니다. **중고서적 거래 플랫폼**은 개인과 개인(P2P) 또는 개인과 업자 간의 중고 책 거래를 손쉽게 연결하여 책의 가치를 지속적으로 나눌 수 있는 공간을 제공합니다.
@@ -52,14 +54,14 @@
 
 ### **주요 특징**
 
-1. **사용자 맞춤 카테고리 분류**: 이용자 특성(연령대, 관심사 등)에 따라 책을 추천받을 수 있습니다.
+1. **사용자 맞춤 카테고리 분류**: 이용자 특성(연령대, 관심사 등)에 따라 책을 검색할 수 있습니다.
 2. **신뢰 기반 거래 시스템**: 판매자-구매자 간 채팅 및 결제 기능을 통해 안전하고 원활한 거래를 보장합니다.
 3. **간편한 사용성**: 책 등록 시 카테고리를 지정해 원하는 대상을 정확히 타겟팅할 수 있습니다.
 
 ***
 ### **차별점**
 
-중고서적에 특화된 시스템을 통해 **책 거래에 최적화된 이용자의 특성별 카테고리화**와 **추천 시스템**을 제공합니다. 또한 중고 책뿐 아니라 희귀 서적과 신간 서적을 업자들과의 거래를 통해 구할 수 있는 기능도 탑재할 예정입니다.
+중고서적에 특화된 시스템을 통해 **책 거래에 최적화된 이용자의 특성별 카테고리화**와 **추천 시스템**을 제공합니다. 나아가, 중고 책뿐 아니라 희귀 서적과 신간 서적을 업자들과의 거래를 통해 구할 수 있는 기능도 탑재할 예정입니다.
 
 # 배경
 <p align="center"><img src="./img/차트.png" width="350px"/></p>
@@ -116,5 +118,5 @@
 
 
 ## 🔗Replication
-### CLUSTER Architecher
+### System Architecher
 ![replication](./img/아키텍처.png)

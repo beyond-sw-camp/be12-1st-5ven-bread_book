@@ -58,9 +58,17 @@
 ## 🔀 시스템 아키텍처
 ![시스템 아키텍처](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/sa.png?raw=true)
 <br>
+### 설계 의도
+- DB 클러스터 (Active-Active)
+  - 채팅 기능 등 비교적 쓰기 작업이 많은 서비스인 만큼 여러대의 쓰기 서버 구성
+  - 일부 서버 재난 발생 시에도 계속 문제없이 사용하기 좋으며 이후 동기화도 비교적 간단한 구성
+  - 이후 추가 서버 구성이 필요할 시 서버 추가하기 쉬운 구조
+- HAProxy
+    - DB 클러스터의 부하 분산
+    - SPOF에 따른 문제를 방지하기 위해 2대를 구성
 
 ## 🔎 SQL 파일 및 성능 개선
-### SQL 파일
+### 1. SQL 파일
 <details>
 <summary>MEMBER</summary>
 <div markdown="1">
@@ -102,41 +110,50 @@
 
 
 
-### SQL 성능 개선
+### 2. SQL 성능 개선
+- sql 쿼리
+  ```sql
+  -- 채팅방 조회(개선전) ----
+  SELECT 
+      cr.id AS chat_room_id,       -- 채팅방 ID
+      cr.identifier AS book_title, -- 책 제목
+      b.id AS book_id,             -- 책 ID
+      p.id AS product_id,          -- 판매 게시글 ID
+      p.member_id AS seller_id,    -- 판매자 ID
+      cr.last_chat,                -- 마지막 메시지
+      cr.created_at                -- 생성일시
+  FROM chatting_room cr
+  JOIN product p ON cr.identifier = (
+      SELECT b.title               -- 책 제목과 identifier 매칭
+      FROM book b 
+      WHERE b.id = p.book_id
+  )
+  JOIN book b ON b.id = p.book_id  -- 책 ID를 추가로 가져오기 위해 조인
+  LIMIT 0, 1000;
 
-```sql
--- 채팅방 조회(개선전) ----
-SELECT 
-    cr.id AS chat_room_id,       -- 채팅방 ID
-    cr.identifier AS book_title, -- 책 제목
-    b.id AS book_id,             -- 책 ID
-    p.id AS product_id,          -- 판매 게시글 ID
-    p.member_id AS seller_id,    -- 판매자 ID
-    cr.last_chat,                -- 마지막 메시지
-    cr.created_at                -- 생성일시
-FROM chatting_room cr
-JOIN product p ON cr.identifier = (
-    SELECT b.title               -- 책 제목과 identifier 매칭
-    FROM book b 
-    WHERE b.id = p.book_id
-)
-JOIN book b ON b.id = p.book_id  -- 책 ID를 추가로 가져오기 위해 조인
-LIMIT 0, 1000;
+  -- 채팅방 조회(개선후) ----
+  SELECT 
+      cr.id AS chat_room_id,       -- 채팅방 ID
+      b.title AS book_title,       -- 책 제목 (JOIN에서 가져옴)
+      b.id AS book_id,             -- 책 ID
+      p.id AS product_id,          -- 판매 게시글 ID
+      p.member_id AS seller_id,    -- 판매자 ID
+      cr.last_chat,                -- 마지막 메시지
+      cr.created_at                -- 생성일시
+  FROM chatting_room cr
+  JOIN book b ON cr.identifier = b.title  -- identifier와 title 매칭
+  JOIN product p ON b.id = p.book_id  -- 책 ID를 가져오기 위한 조인
+  LIMIT 1000; -- LIMIT 범위 적용
+  ```
+- 채팅방 조회 기능 쿼리 성능 개선(서브 쿼리 → 다중 조인)
+- set profiling을 통해 쿼리 실행시간 축소 확인
+- grafana를 활용한 모니터링으로 쿼리 실행시 DB 서버의 CPU 사용량 축소 확인
+  
+<p align="middle" style="margin: 0; padding: 0;">
+  <img width="400px" src="./assets/image/5ven성능개선1.png">
+</p>
 
--- 채팅방 조회(개선후) ----
-SELECT 
-    cr.id AS chat_room_id,       -- 채팅방 ID
-    b.title AS book_title,       -- 책 제목 (JOIN에서 가져옴)
-    b.id AS book_id,             -- 책 ID
-    p.id AS product_id,          -- 판매 게시글 ID
-    p.member_id AS seller_id,    -- 판매자 ID
-    cr.last_chat,                -- 마지막 메시지
-    cr.created_at                -- 생성일시
-FROM chatting_room cr
-JOIN book b ON cr.identifier = b.title  -- identifier와 title 매칭
-JOIN product p ON b.id = p.book_id  -- 책 ID를 가져오기 위한 조인
-LIMIT 1000; -- LIMIT 범위 적용
-```
-![sql1](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A01.png?raw=true)
-<br>
 ![sql2](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%20%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%202.png?raw=true)
+<p align="middle">
+  <strong>성능 테스트 전/후 비교
+</p>

@@ -150,10 +150,11 @@
 - grafana를 활용한 모니터링으로 쿼리 실행시 DB 서버의 CPU 사용량 축소 확인
   
 <p align="middle" style="margin: 0; padding: 0;">
-  <img width="400px" src="./assets/image/5ven성능개선1.png">
+  <img width="500px" src="./assets/image/5ven성능개선1.png">
 </p>
-
-![sql2](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%20%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%202.png?raw=true)
+<p align="middle" style="margin: 0; padding: 0;">
+  <img width="500px" src="./assets/image/5ven 성능개선 2.png">
+</p>
 <p align="middle">
   <strong>성능 테스트 전/후 비교
 </p>

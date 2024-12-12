@@ -59,4 +59,84 @@
 ![시스템 아키텍처](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/sa.png?raw=true)
 <br>
 
-## 🔎 SQL 성능 평가
+## 🔎 SQL 파일 및 성능 개선
+### SQL 파일
+<details>
+<summary>MEMBER</summary>
+<div markdown="1">
+
+- [member.sql](./assets/image/member.sql)
+
+</div>
+</details>
+
+<details>
+<summary>CHAT</summary>
+<div markdown="1">
+
+- [chat.sql](./assets/image/chat.sql)
+
+</div>
+</details>
+
+
+<details>
+<summary>PRODUCT</summary>
+<div markdown="1">
+
+- [product.sql](./assets/image/product.sql)
+
+</div>
+</details>
+
+
+<details>
+<summary>PAY</summary>
+<div markdown="1">
+
+- [pay.sql](./assets/image/pay.sql)
+
+</div>
+</details>
+
+
+
+
+### SQL 성능 개선
+
+```sql
+-- 채팅방 조회(개선전) ----
+SELECT 
+    cr.id AS chat_room_id,       -- 채팅방 ID
+    cr.identifier AS book_title, -- 책 제목
+    b.id AS book_id,             -- 책 ID
+    p.id AS product_id,          -- 판매 게시글 ID
+    p.member_id AS seller_id,    -- 판매자 ID
+    cr.last_chat,                -- 마지막 메시지
+    cr.created_at                -- 생성일시
+FROM chatting_room cr
+JOIN product p ON cr.identifier = (
+    SELECT b.title               -- 책 제목과 identifier 매칭
+    FROM book b 
+    WHERE b.id = p.book_id
+)
+JOIN book b ON b.id = p.book_id  -- 책 ID를 추가로 가져오기 위해 조인
+LIMIT 0, 1000;
+
+-- 채팅방 조회(개선후) ----
+SELECT 
+    cr.id AS chat_room_id,       -- 채팅방 ID
+    b.title AS book_title,       -- 책 제목 (JOIN에서 가져옴)
+    b.id AS book_id,             -- 책 ID
+    p.id AS product_id,          -- 판매 게시글 ID
+    p.member_id AS seller_id,    -- 판매자 ID
+    cr.last_chat,                -- 마지막 메시지
+    cr.created_at                -- 생성일시
+FROM chatting_room cr
+JOIN book b ON cr.identifier = b.title  -- identifier와 title 매칭
+JOIN product p ON b.id = p.book_id  -- 책 ID를 가져오기 위한 조인
+LIMIT 1000; -- LIMIT 범위 적용
+```
+![sql1](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A01.png?raw=true)
+<br>
+![sql2](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%20%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%202.png?raw=true)

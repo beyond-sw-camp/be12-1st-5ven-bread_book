@@ -36,15 +36,8 @@
 
 
 
-## 🎮 기술 스택
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white&color=black"></a>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white&color=ffa500"></a>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=white"></a>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Grafana-%23F46800.svg?style=flat&logo=grafana&logoColor=white"></a>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=Prometheus&logoColor=white"></a>
-<br>
-
-
+## 🎞 프로젝트 기획서
+[프로젝트 기획서](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B8%B0%ED%9A%8D%EC%84%9C_%EC%B5%9C%EC%A2%85.pdf)
 
 ## 📂 요구사항 정의서 
 [요구사항 정의서](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.pdf)
@@ -68,7 +61,21 @@
     - SPOF에 따른 문제를 방지하기 위해 2대를 구성
 
 ## 🔎 SQL 파일 및 성능 개선
-### 1. SQL 파일
+### 1. DDL 파일
+
+<details>
+<summary>DDL</summary>
+<div markdown="1">
+
+- [ddl.sql](./assets/image/ddl.sql)
+
+</div>
+</details>
+
+### 2. SQL 파일
+
+
+
 <details>
 <summary>MEMBER</summary>
 <div markdown="1">
@@ -110,7 +117,7 @@
 
 
 
-### 2. SQL 성능 개선
+### 3. SQL 성능 개선
 - sql 쿼리
   ```sql
   -- 채팅방 조회(개선전) ----
@@ -158,3 +165,11 @@
 <p align="middle">
   <strong>성능 테스트 전/후 비교
 </p>
+
+## 🎮 기술 스택
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white&color=black"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white&color=ffa500"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=white"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Grafana-%23F46800.svg?style=flat&logo=grafana&logoColor=white"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=Prometheus&logoColor=white"></a>
+<br>

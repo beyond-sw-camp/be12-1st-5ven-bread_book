@@ -60,31 +60,42 @@
     - DB 클러스터의 부하 분산
     - SPOF에 따른 문제를 방지하기 위해 2대를 구성
 ### DR(재난 복구) 시나리오
-- DB 클러스터
-  - 1대 장애 시
-    - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드 차단
-    - 노드 복구 후 MySQL을 다시 실행하여 클러스터에 재참여
-    - 복구된 노드는 클러스터로 자동 동기화 됨
-    - 이후 HAProxy에서 다시 해당 노드 복구
-  - 2대 장애 시
-    - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드들 차단
-    - 남아있는 노드에서 Primary Component를 수동으로 복구
-    - 복구된 노드 하나를 Primary Component에 합류시킴
-    - 이후 HAProxy에서 다시 해당 노드들 복구
-  - 3대 장애 시
-    - 가장 최근에 종료되었거나 상태가 최신인 노드를 찾아 복구.
-    - 해당 노드를 기반으로 클러스터를 부트스트랩
-    - 부트스트랩된 노드가 정상 동작하면 다른 노드들을 클러스터에 다시 추가
-    - 최신 백업을 사용해 클러스터를 초기화
-    - HAProxy에서 다시 세 노드들 연결
-    - 추가적으로 데이터 유실을 최대한 방지하기 위해 주기적인 클러스터 백업 및 자동화된 복구 스크립트 준비
-    - 전체 장애 발생을 최대한 방지하기 위해 노드들을 서로 다른 데이터센터에 분산 배치
-  - HAProxy 장애 시
-    - keepalived를 사용하여 Active-standby 상태로 공유된 가상 IP를 이용하여 접속
-    - 주 HAProxy가 응답하지 않을 경우 예비 HAProxy로 VIP를 자동 전환
-    - 장애 복구 후 VIP가 다시 Primary HAProxy로 돌아오도록 설정
-    - 추가로 HAProxy 설정 파일을 주기적으로 동기화 하여 동일한 환경 유지
-    - 혹은 글로벌 서버 로드밸런싱을 사용하여 다중 지역 HAProxy를 사용
+<details>
+<summary>DB 클러스터</summary>
+<div markdown="1">
+
+- 1대 장애 시
+  - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드 차단
+  - 노드 복구 후 MySQL을 다시 실행하여 클러스터에 재참여
+  - 복구된 노드는 클러스터로 자동 동기화 됨
+  - 이후 HAProxy에서 다시 해당 노드 복구
+- 2대 장애 시
+  - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드들 차단
+  - 남아있는 노드에서 Primary Component를 수동으로 복구
+  - 복구된 노드 하나를 Primary Component에 합류시킴
+  - 이후 HAProxy에서 다시 해당 노드들 복구
+- 3대 장애 시
+  - 가장 최근에 종료되었거나 상태가 최신인 노드를 찾아 복구.
+  - 해당 노드를 기반으로 클러스터를 부트스트랩
+  - 부트스트랩된 노드가 정상 동작하면 다른 노드들을 클러스터에 다시 추가
+  - 최신 백업을 사용해 클러스터를 초기화
+  - HAProxy에서 다시 세 노드들 연결
+  - 추가적으로 데이터 유실을 최대한 방지하기 위해 주기적인 클러스터 백업 및 자동화된 복구 스크립트 준비
+  - 전체 장애 발생을 최대한 방지하기 위해 노드들을 서로 다른 데이터센터에 분산 배치
+</div>
+</details>
+
+<details>
+<summary>HAProxy</summary>
+<div markdown="1">
+
+- keepalived를 사용하여 Active-standby 상태로 공유된 가상 IP를 이용하여 접속
+- 주 HAProxy가 응답하지 않을 경우 예비 HAProxy로 VIP를 자동 전환
+- 장애 복구 후 VIP가 다시 Primary HAProxy로 돌아오도록 설정
+- 추가로 HAProxy 설정 파일을 주기적으로 동기화 하여 동일한 환경 유지
+- 혹은 글로벌 서버 로드밸런싱을 사용하여 다중 지역 HAProxy를 사용
+</div>
+</details>
 
 ## 🔎 SQL 파일 및 성능 개선
 ### 1. DDL 파일
@@ -115,7 +126,7 @@
 <summary>CHAT</summary>
 <div markdown="1">
 
-- [chat.sql](./assets/sql/chat.sql)
+- [chat.sql](./assets/sql/chatting.sql)
 
 </div>
 </details>
@@ -135,7 +146,7 @@
 <summary>PAY</summary>
 <div markdown="1">
 
-- [pay.sql](./assets/sql/pay.sql)
+- [pay.sql](./assets/sql/payment.sql)
 
 </div>
 </details>

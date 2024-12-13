@@ -89,7 +89,7 @@
 <summary>CHAT</summary>
 <div markdown="1">
 
-- [chat.sql](./assets/image/chat.sql)
+- [chat.sql](./assets/image/chatting.sql)
 
 </div>
 </details>
@@ -109,7 +109,7 @@
 <summary>PAY</summary>
 <div markdown="1">
 
-- [pay.sql](./assets/image/pay.sql)
+- [pay.sql](./assets/image/payment.sql)
 
 </div>
 </details>

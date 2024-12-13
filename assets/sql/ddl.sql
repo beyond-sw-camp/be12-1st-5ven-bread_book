@@ -110,28 +110,27 @@ CREATE TABLE participant (
 );
 
 -- 주문 테이블
--- 직거래 (현금 직접결제) 
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,        -- 주문 ID
     member_id INT,                            -- 구매자 ID
     product_id INT,                           -- 상품 ID
-    quantity INT NOT NULL,                    -- 구매 수량
     amount INT NOT NULL,                      -- 가격
-    order_status ENUM('Pending', 'Completed', 'Cancelled', 'Refunded') DEFAULT 'Pending', -- 주문 상태
+    order_status ENUM('거래중', '거래완료', '거래취소') DEFAULT '거래중' NOT NULL, -- 주문 상태
+    street_address VARCHAR(255),        -- 주문자 도로명 주소
+    detail_address VARCHAR(255),        -- 주문자 상세 주소
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 주문일시
     FOREIGN KEY (member_id) REFERENCES member(id),
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
 -- 결제 내역 테이블
+-- 직거래 (현금 직접결제)
 CREATE TABLE payment (
     id INT AUTO_INCREMENT PRIMARY KEY,  -- 결제 ID
     product_id INT,                     -- 상품 ID
     order_id INT,                       -- 주문 ID
-    quantity INT NOT NULL,              -- 구매 수량
-		amount INT NOT NULL,                -- 가격
-    street_address VARCHAR(255),        -- 도로명 주소
-    detail_address VARCHAR(255),        -- 상세 주소
+	amount INT NOT NULL,                -- 가격
+	payment_type ENUM('Kakao', 'Toss', 'Direct') NOT NULL,    -- 결제수단
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 결제일시
     FOREIGN KEY (product_id) REFERENCES product(id),
     FOREIGN KEY (order_id) REFERENCES orders(id)

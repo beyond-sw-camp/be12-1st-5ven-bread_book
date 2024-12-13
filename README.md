@@ -59,6 +59,32 @@
 - HAProxy
     - DB 클러스터의 부하 분산
     - SPOF에 따른 문제를 방지하기 위해 2대를 구성
+### DR(재난 복구) 시나리오
+- DB 클러스터
+  - 1대 장애 시
+    - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드 차단
+    - 노드 복구 후 MySQL을 다시 실행하여 클러스터에 재참여
+    - 복구된 노드는 클러스터로 자동 동기화 됨
+    - 이후 HAProxy에서 다시 해당 노드 복구
+  - 2대 장애 시
+    - HAProxy에서 wsrep_local_state 값을 확인하여 장애 확인하고 해당 노드들 차단
+    - 남아있는 노드에서 Primary Component를 수동으로 복구
+    - 복구된 노드 하나를 Primary Component에 합류시킴
+    - 이후 HAProxy에서 다시 해당 노드들 복구
+  - 3대 장애 시
+    - 가장 최근에 종료되었거나 상태가 최신인 노드를 찾아 복구.
+    - 해당 노드를 기반으로 클러스터를 부트스트랩
+    - 부트스트랩된 노드가 정상 동작하면 다른 노드들을 클러스터에 다시 추가
+    - 최신 백업을 사용해 클러스터를 초기화
+    - HAProxy에서 다시 세 노드들 연결
+    - 추가적으로 데이터 유실을 최대한 방지하기 위해 주기적인 클러스터 백업 및 자동화된 복구 스크립트 준비
+    - 전체 장애 발생을 최대한 방지하기 위해 노드들을 서로 다른 데이터센터에 분산 배치
+  - HAProxy 장애 시
+    - keepalived를 사용하여 Active-standby 상태로 공유된 가상 IP를 이용하여 접속
+    - 주 HAProxy가 응답하지 않을 경우 예비 HAProxy로 VIP를 자동 전환
+    - 장애 복구 후 VIP가 다시 Primary HAProxy로 돌아오도록 설정
+    - 추가로 HAProxy 설정 파일을 주기적으로 동기화 하여 동일한 환경 유지
+    - 혹은 글로벌 서버 로드밸런싱을 사용하여 다중 지역 HAProxy를 사용
 
 ## 🔎 SQL 파일 및 성능 개선
 ### 1. DDL 파일
@@ -67,7 +93,7 @@
 <summary>DDL</summary>
 <div markdown="1">
 
-- [ddl.sql](./assets/image/ddl.sql)
+- [ddl.sql](./assets/sql/ddl.sql)
 
 </div>
 </details>
@@ -80,7 +106,7 @@
 <summary>MEMBER</summary>
 <div markdown="1">
 
-- [member.sql](./assets/image/member.sql)
+- [member.sql](./assets/sql/member.sql)
 
 </div>
 </details>
@@ -89,7 +115,7 @@
 <summary>CHAT</summary>
 <div markdown="1">
 
-- [chat.sql](./assets/image/chat.sql)
+- [chat.sql](./assets/sql/chat.sql)
 
 </div>
 </details>
@@ -99,7 +125,7 @@
 <summary>PRODUCT</summary>
 <div markdown="1">
 
-- [product.sql](./assets/image/product.sql)
+- [product.sql](./assets/sql/product.sql)
 
 </div>
 </details>
@@ -109,7 +135,7 @@
 <summary>PAY</summary>
 <div markdown="1">
 
-- [pay.sql](./assets/image/pay.sql)
+- [pay.sql](./assets/sql/pay.sql)
 
 </div>
 </details>
@@ -152,9 +178,11 @@
   JOIN product p ON b.id = p.book_id  -- 책 ID를 가져오기 위한 조인
   LIMIT 1000; -- LIMIT 범위 적용
   ```
-- 채팅방 조회 기능 쿼리 성능 개선(서브 쿼리 → 다중 조인)
-- set profiling을 통해 쿼리 실행시간 축소 확인
-- grafana를 활용한 모니터링으로 쿼리 실행시 DB 서버의 CPU 사용량 축소 확인
+- 핵심 기능인 채팅방 조회의 쿼리가 실행하는데 상당 시간 걸림을 확인하여 성능 개선 시도
+- 채팅방 조회 기능 쿼리 성능 개선을 위해 연산이 비교적 더 많이 사용되는 서브 쿼리에서 비교적 연산이 적은 다중 조인으로 쿼리 개선
+- set profiling을 통해 쿼리 실행시간 약 1/3으로 축소 확인
+- grafana를 활용한 모니터링으로 쿼리 실행시 DB 서버의 CPU 사용량 약 1/2로 축소 확인
+- 다중 조인을 사용함으로써 한 번의 연산으로 데이터를 가져올 수 있고, chatting_room과 book을 먼저 JOIN하고, 그 후에 product를 조인함으로써 불필요한 연산을 줄임으로써 시간 개선 및 서버의 CPU 사용량 감소
   
 <p align="middle" style="margin: 0; padding: 0;">
   <img width="500px" src="./assets/image/5ven성능개선1.png">

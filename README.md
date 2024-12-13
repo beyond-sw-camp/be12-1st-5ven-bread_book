@@ -40,16 +40,16 @@
 [프로젝트 기획서](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B8%B0%ED%9A%8D%EC%84%9C_%EC%B5%9C%EC%A2%85.pdf)
 
 ## 📂 요구사항 정의서 
-[요구사항 정의서](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/5%EC%A1%B0_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.pdf)
-![요구사항 정의서](https://raw.githubusercontent.com/beyond-sw-camp/be12-1st-5ven-bread_book/refs/heads/kjg/assets/image/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.png)
+[요구사항 정의서](./assets/5조_프로젝트_기획서_최종.pdf)
+![요구사항 정의서](./assets/image/요구사항%20정의서.png)
 <br>
 
 ## ⚙️ ERD
-![ERD](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/5ven%20ERD.png?raw=true)
+![ERD](./assets/image/5ven%20ERD.png)
 <br>
 
 ## 🔀 시스템 아키텍처
-![시스템 아키텍처](https://github.com/beyond-sw-camp/be12-1st-5ven-bread_book/blob/kjg/assets/image/sa.png?raw=true)
+![시스템 아키텍처](./assets/image/sa.png)
 <br>
 ### 설계 의도
 - DB 클러스터 (Active-Active)

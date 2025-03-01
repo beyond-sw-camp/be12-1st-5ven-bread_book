@@ -59,13 +59,13 @@ CREATE TABLE product (
 );
 
 -- 찜하기 테이블
-CREATE TABLE favorite_product (
-		id INT AUTO_INCREMENT PRIMARY KEY,       -- 찜 ID pk
-		product_id INT NOT NULL UNIQUE,
-		member_id INT NOT NULL UNIQUE,
+CREATE TABLE wish (
+		idx INT AUTO_INCREMENT PRIMARY KEY,       -- 찜 ID pk
+		product_idx INT NOT NULL UNIQUE,
+		member_idx INT NOT NULL UNIQUE,
 		canceled BOOLEAN NOT NULL DEFAULT FALSE,
-		FOREIGN KEY (member_id) REFERENCES member(id),
-		FOREIGN KEY (product_id) REFERENCES product(id)
+		FOREIGN KEY (member_idx) REFERENCES member(idx),
+		FOREIGN KEY (product_idx) REFERENCES product(idx)
 ); -- 취소하면 boolean 값 변경
 
 -- 리뷰 테이블

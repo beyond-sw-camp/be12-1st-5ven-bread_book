@@ -1,19 +1,20 @@
 -- 회원정보 테이블
 CREATE TABLE member (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- ID 기본키
-    userid VARCHAR(20) NOT NULL UNIQUE,   -- 회원ID
-    username VARCHAR(50) NOT NULL,        -- 사용자명(본명)
-    email VARCHAR(100) NOT NULL UNIQUE,   -- 이메일
-    password VARCHAR(255) NOT NULL,       -- 비밀번호
-    nickname VARCHAR(50) UNIQUE,          -- 닉네임
-    birth_date DATE NOT NULL,             -- 생년월일
-    gender ENUM('male', 'female', 'other'), -- 성별
-    is_admin BOOLEAN DEFAULT FALSE,       -- 관리자 계정 여부
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 가입일자
-    is_deleted BOOLEAN,                   -- 탈퇴여부
-    deleted_at DATETIME DEFAULT NULL,     -- 탈퇴일자
-    agree BOOLEAN DEFAULT FALSE          -- 약관동의
-    score INT DEFAULT 0                  -- 신뢰도
+	idx INT AUTO_INCREMENT PRIMARY KEY, -- ID 기본키
+	userid VARCHAR(20) NOT NULL UNIQUE,   -- 회원ID
+	username VARCHAR(50) NOT NULL,        -- 사용자명(본명)
+	email VARCHAR(100) NOT NULL UNIQUE,   -- 이메일
+	password VARCHAR(255) NOT NULL,       -- 비밀번호
+	nickname VARCHAR(50) UNIQUE,          -- 닉네임
+	birth_date DATE NOT NULL,             -- 생년월일
+	gender ENUM('male', 'female', 'other'), -- 성별
+	is_admin BOOLEAN DEFAULT FALSE,       -- 관리자 계정 여부
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 가입일자
+	is_deleted BOOLEAN DEFAULT FALSE,              -- 탈퇴여부
+	deleted_at DATETIME DEFAULT NULL,     -- 탈퇴일자
+	agree BOOLEAN DEFAULT FALSE,          -- 약관동의
+	score INT DEFAULT 0                  -- 신뢰도
+	-- @Entity 클래스에 추가된 Boolean enabled 와 String profileImgUrl; 반영필
 );
 
 -- 카테고리 테이블 (계층형 구조)
@@ -40,32 +41,30 @@ CREATE TABLE book (
 
 -- 판매 게시글 테이블
 CREATE TABLE product (
-    id INT AUTO_INCREMENT PRIMARY KEY,         -- 판매 ID pk
-    member_id INT NOT NULL,                    -- 판매자 ID
-    book_id INT NOT NULL,                      -- 책 정보 참조 (book)
-    category_id INT,                        -- 카테고리 참조
-    price DECIMAL(10, 2) NOT NULL,             -- 가격
-    book_condition ENUM ('상', '중', '하'),    -- 상태
-    trade_method VARCHAR(100),               -- 거래 선호 방식
-    payment_location VARCHAR(255),             -- 거래 장소 (직거래를 선호할 때만 기록 null값 가능)
-    description TEXT,                          -- 상품 설명
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록일시
-    product_status ENUM('Deleted','For Sale', 'Reserved', 'Sold Out') DEFAULT 'For Sale', -- 판매상태
-    # product_status ENUM('삭제 상품', '판매중', '거래 예약중', '거래 완료') DEFAULT '판매중', -- 판매상태
-    book_image VARCHAR(255),                   -- 책 이미지 URL
-    FOREIGN KEY (book_id) REFERENCES book(id),
-    FOREIGN KEY (member_id) REFERENCES member(id),
-    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
+	idx INT AUTO_INCREMENT PRIMARY KEY,         -- 판매 idx pk
+	member_idx INT NOT NULL,                    -- 판매자 idx
+	book_idx INT NOT NULL,                      -- 책 정보 참조 (book)
+	category_idx INT,                        -- 카테고리 참조
+	price DECIMAL(10, 2) NOT NULL,             -- 가격
+	book_condition ENUM ('상', '중', '하'),    -- 상태
+	trade_method VARCHAR(100),               -- 거래 선호 방식
+	trade_location VARCHAR(255),             -- 거래 장소 (직거래를 선호할 때만 기록 null값 가능)
+	description TEXT,                          -- 상품 설명
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록일시
+	product_status ENUM('판매중', '거래 완료', '거래 예약중', '게시글 삭제') DEFAULT '판매중', -- 판매상태
+	FOREIGN KEY (book_idx) REFERENCES book(idx),
+	FOREIGN KEY (member_idx) REFERENCES member(idx),
+	FOREIGN KEY (category_idx) REFERENCES category(idx) ON DELETE CASCADE
 );
 
 -- 찜하기 테이블
 CREATE TABLE wish (
-		idx INT AUTO_INCREMENT PRIMARY KEY,       -- 찜 ID pk
-		product_idx INT NOT NULL UNIQUE,
-		member_idx INT NOT NULL UNIQUE,
-		canceled BOOLEAN NOT NULL DEFAULT FALSE,
-		FOREIGN KEY (member_idx) REFERENCES member(idx),
-		FOREIGN KEY (product_idx) REFERENCES product(idx)
+	idx INT AUTO_INCREMENT PRIMARY KEY,       -- 찜 ID pk
+	product_idx INT NOT NULL UNIQUE,
+	member_idx INT NOT NULL UNIQUE,
+	canceled BOOLEAN NOT NULL DEFAULT FALSE,
+	FOREIGN KEY (member_idx) REFERENCES member(idx),
+	FOREIGN KEY (product_idx) REFERENCES product(idx)
 ); -- 취소하면 boolean 값 변경
 
 -- 리뷰 테이블
